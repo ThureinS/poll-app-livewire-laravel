@@ -1,59 +1,102 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Livewire Poll App
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A real-time polling application built with Laravel and Livewire as a learning project. This application allows users to create dynamic polls with multiple options and vote in real-time without page reloads.
 
-## About Laravel
+## ⚠️ Disclaimer
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**This is a learning project.** It is not intended for production using and comes with **no license**. The base framework follows the MIT license, but the application code is for educational purposes only.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features ✨
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+-   **Create Polls**:
+    -   Dynamic form to add/remove poll options instantly.
+    -   Real-time validation for titles (min 3 chars) and options.
+    -   Limit of up to 10 options per poll.
+-   **Real-time Voting**:
+    -   Users can vote on any option.
+    -   Vote counts update instantly across clients using Livewire's reactivity.
+    -   Visual progress indication for each option.
+-   **Responsive Design**:
+    -   Styled with Tailwind CSS (via CDN and Vite).
+    -   Mobile-friendly layout.
 
-## Learning Laravel
+## Tech Stack 🛠️
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+-   **Framework**: [Laravel 12](https://laravel.com)
+-   **Frontend**: [Livewire 3](https://livewire.laravel.com)
+-   **Styling**: [Tailwind CSS](https://tailwindcss.com) (v4 alpha via Vite & CDN)
+-   **Database**: MySQL
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Installation 🚀
 
-## Laravel Sponsors
+Follow these steps to set up the project locally:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+1.  **Clone the repository** (if you haven't already).
 
-### Premium Partners
+2.  **Install PHP dependencies**:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+    ```bash
+    composer install
+    ```
 
-## Contributing
+3.  **Setup Environment**:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    ```bash
+    cp .env.example .env
+    ```
 
-## Code of Conduct
+4.  **Generate Application Key**:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    ```bash
+    php artisan key:generate
+    ```
 
-## Security Vulnerabilities
+5.  **Configure Database**:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    -   **SQLite** (Default): The project is pre-configured for SQLite.
+    -   **MySQL**: Update your `.env` file with your MySQL credentials (`DB_CONNECTION=mysql`, `DB_DATABASE`, `DB_USERNAME`, etc.) and ensure the database exists.
 
-## License
+6.  **Run Migrations**:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    ```bash
+    php artisan migrate
+    ```
+
+7.  **Install & Build Assets**:
+
+    ```bash
+    npm install
+    npm run dev
+    ```
+
+8.  **Start the Server**:
+    Keep `npm run dev` running in one terminal, and start the Laravel server in another:
+
+    ```bash
+    php artisan serve
+    ```
+
+9.  **Access the App**:
+    Open [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
+
+## Usage 💡
+
+1.  **Creating a Poll**:
+
+    -   Enter a "Poll Title".
+    -   Add options using the "Add Option" button.
+    -   Click "Create Poll".
+    -   _Validation rules ensure data integrity (e.g., options cannot be empty)._
+
+2.  **Voting**:
+    -   Scroll to the "Available Polls" section.
+    -   Click "Vote" on any option.
+    -   Watch the vote count increment immediately!
+
+## Security & Code Quality 🔒
+
+-   **Validation**: All user inputs are validated on the server-side using Laravel's robust validation rules (`required`, `min`, `max`).
+-   **Mass Assignment Protection**: Eloquent models (`Poll`, `Option`) use `$fillable` to prevent mass assignment vulnerabilities.
+-   **Type Safety**: Strictly typed properties and method signatures are used where applicable.
+
+---
